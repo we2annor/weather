@@ -1,17 +1,16 @@
-import axios from "axios";
-
 export const KEY = "a412248622c64d8e98dd52d1a7cde2bb";
 
-export const setApi = (api) => {
+interface SetApi {
+  (api: string): string;
+}
+
+interface GetBaseAPI {
+  (baseAPI: string): string;
+}
+
+export const setApi: SetApi = (api) => {
   return `${api}&key=${KEY}`;
 };
-export const getBaseAPI = (baseAPI) => {
+export const getBaseAPI: GetBaseAPI = (baseAPI) => {
   return baseAPI;
 };
-
-export default axios.create({
-  baseURL: getBaseAPI(),
-  params: {
-    key: KEY,
-  },
-});

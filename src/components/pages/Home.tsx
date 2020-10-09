@@ -3,9 +3,37 @@ import { KEY } from "../../apis/weatherio";
 import CurrentForecast from "../CurrentForecast";
 import axios from "axios";
 
+interface ResultItem {
+  city_name: string;
+  temp: number;
+  sunrise: number;
+  sunset: number;
+}
+
+const ResultItem = {
+  city_name: "",
+  temp: 0,
+  sunrise: 0,
+  sunset: 0,
+};
+
+interface WeatherResult {
+  description: string;
+  icon: string;
+}
+
+const WeatherResult = {
+  description: "",
+  icon: "",
+};
+
+//interface ResultItems extends Array<ResultItem> {}
+
 const Home = () => {
-  const [weatherDetails, setWeatherDetails] = useState([]);
-  const [currentData, setCurrentData] = useState([]);
+  const [weatherResults, setWeatherResults] = useState<WeatherResult>(
+    WeatherResult
+  );
+  const [results, setResults] = useState<ResultItem>(ResultItem);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -16,14 +44,14 @@ const Home = () => {
       .get(API)
       .then((result) => {
         setLoading(true);
-        setCurrentData(result.data.data[0] || []);
-        setWeatherDetails(result.data.data[0].weather || []);
+        setResults(result.data.data[0]);
+        setWeatherResults(result.data.data[0].weather);
       })
       .catch((reject) => {
         setLoading(true);
         setError(reject);
-        setCurrentData([]);
-        setWeatherDetails([]);
+        setResults(ResultItem);
+        setWeatherResults(WeatherResult);
       });
   }, [API]);
 
@@ -35,9 +63,7 @@ const Home = () => {
     return <div className='error-message'>Sorry an error occured.</div>;
   }
 
-  return (
-    <CurrentForecast forecast={currentData} weatherDetails={weatherDetails} />
-  );
+  return <CurrentForecast forecast={results} weatherDetails={weatherResults} />;
 };
 
 export default Home;

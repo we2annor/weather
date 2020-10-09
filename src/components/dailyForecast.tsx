@@ -1,6 +1,19 @@
 import React from "react";
 
-const DailyForecast = ({ dailyForecast }) => {
+interface Props {
+  dailyForecast: {
+    datetime: string;
+    temp: number;
+    weather: { description: string; icon: string };
+    high_temp: number;
+    low_temp: number;
+  };
+}
+
+interface ResultItem {
+  temp: string;
+}
+const DailyForecast: React.FC<Props> = ({ dailyForecast }) => {
   return (
     <div className='forecast'>
       <small>

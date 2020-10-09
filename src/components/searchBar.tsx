@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ onFilterSubmit }) => {
-  const [minTemp, setMinTemp] = useState("");
-  const [maxTemp, setMaxTemp] = useState("");
+interface Props {
+  onFilterSubmit: {
+    (minTemp: number, maxTemp: number): void;
+  };
+}
+const SearchBar: React.FC<Props> = ({ onFilterSubmit }) => {
+  const [minTemp, setMinTemp] = useState(0);
+  const [maxTemp, setMaxTemp] = useState(0);
 
-  const onInputChange = (e) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     name === "minTemp" ? setMinTemp(Number(value)) : setMaxTemp(Number(value));
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onFilterSubmit(minTemp, maxTemp);
   };

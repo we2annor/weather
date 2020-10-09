@@ -3,8 +3,24 @@ import { KEY } from "../apis/weatherio";
 import axios from "axios";
 import DailyForecastList from "./DailyForecastList";
 
-const City = ({ api, city_name, filter }) => {
-  const [currentData, setCurrentData] = useState([]);
+interface Props {
+  api: string;
+  city_name: string;
+  filter: {};
+}
+
+interface ResultItem {
+  datetime: string;
+  temp: number;
+  weather: { description: string; icon: string };
+  high_temp: number;
+  low_temp: number;
+}
+
+interface ResultItems extends Array<ResultItem> {}
+
+const City: React.FC<Props> = ({ api, city_name, filter }) => {
+  const [results, setResults] = useState<ResultItems>([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -15,12 +31,12 @@ const City = ({ api, city_name, filter }) => {
       .get(API)
       .then((result) => {
         setLoading(true);
-        setCurrentData(result.data.data || []);
+        setResults(result.data.data);
       })
       .catch((reject) => {
         setLoading(true);
         setError(reject);
-        setCurrentData([]);
+        setResults([]);
       });
   }, [API]);
 
@@ -32,13 +48,14 @@ const City = ({ api, city_name, filter }) => {
     return <div className='error-message'>Sorry an error occured.</div>;
   }
 
+  console.log("Results", results);
   return (
     <div className='ui raised segment city-container'>
       <h3 className='ui header'>{city_name}</h3>
       <div className='div-section'>
         <div className='container'>
           <ul className='cities'>
-            <DailyForecastList dailyForecasts={currentData} filter={filter} />
+            <DailyForecastList results={results} filter={filter} />
           </ul>
         </div>
       </div>
