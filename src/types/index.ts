@@ -55,5 +55,3 @@ interface ResultItem {
   high_temp: number;
   low_temp: number;
 }
-
-export interface ResultItems extends Array<ResultItem> {}
