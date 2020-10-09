@@ -22,7 +22,7 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ dailyForecast }) => {
         </figure>
       </div>
       <p>H:{dailyForecast.high_temp}</p>
-      <p>H:{dailyForecast.low_temp}</p>
+      <p>L:{dailyForecast.low_temp}</p>
     </div>
   );
 };
