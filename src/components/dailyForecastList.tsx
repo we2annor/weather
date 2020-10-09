@@ -11,16 +11,16 @@ interface DailyForecasts {
   index: number;
 }
 
-interface DailyForecast {}
-
 const DailyForecastList: React.FC<Props> = ({ dailyForecasts }) => {
-  const renderedList = dailyForecasts.map((dailyForecast, index) => {
-    return (
-      <li key={index} className='day'>
-        <DailyForecast dailyForecast={dailyForecast} />
-      </li>
-    );
-  });
+  const renderedList = dailyForecasts.map(
+    (dailyForecast: any, index: number) => {
+      return (
+        <li key={index} className='day'>
+          <DailyForecast dailyForecast={dailyForecast} />
+        </li>
+      );
+    }
+  );
 
   return <div>{renderedList}</div>;
 };

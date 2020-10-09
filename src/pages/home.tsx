@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { KEY } from "../apis/weatherio";
-import CurrentForecast from "../components/currentForecast";
+import CurrentForecast, {
+  Forecast,
+  WeatherDetails,
+} from "../components/currentForecast";
 import axios from "axios";
 
 interface HomeStateValue {
@@ -27,21 +30,9 @@ interface DailyForecast {
   temp: number;
 }
 
-const initialDailyForecastValue: DailyForecast = {
-  weather: { description: "", icon: "" },
-  high_temp: 0,
-  low_temp: 0,
-  datetime: "",
-  temp: 0,
-};
-
-//const ResponseInitialArray: <Array>;
-
 const Home = () => {
-  const [weatherDetails, setWeatherDetails] = useState(
-    initialDailyForecastValue
-  );
-  const [currentData, setCurrentData] = useState([]);
+  const [weatherDetails, setWeatherDetails] = useState<WeatherDetails>();
+  const [currentData, setCurrentData] = useState<Forecast>();
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -51,15 +42,16 @@ const Home = () => {
     axios
       .get(API)
       .then((result) => {
-        setLoaded(true);
-        setCurrentData(result.data.data[0] || []);
-        setWeatherDetails(result.data.data[0].weather || []);
+        console.log(result.data);
+        // setLoaded(true);
+        // setCurrentData(result.data.data[0]);
+        // setWeatherDetails(result.data.data[0].weather);
       })
       .catch((reject) => {
         setLoaded(true);
         setError(reject);
-        setCurrentData([]);
-        setWeatherDetails([]);
+        // setCurrentData();
+        // setWeatherDetails();
       });
   }, [API]);
 

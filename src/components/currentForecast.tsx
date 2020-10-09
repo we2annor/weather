@@ -1,24 +1,26 @@
 import React from "react";
 
-interface Forecast {
+export interface Forecast {
   city_name: string;
   temp: number;
   sunrise: number;
   sunset: number;
 }
 
-interface WeatherDetails {
+export interface WeatherDetails {
   description: string;
   icon: string;
   code?: number;
 }
 
 interface Props {
-  forecast: Forecast;
-  weatherDetails: WeatherDetails;
+  forecast?: Forecast;
+  weatherDetails?: WeatherDetails;
 }
 
 const CurrentForecast: React.FC<Props> = ({ forecast, weatherDetails }) => {
+  if (!forecast || !weatherDetails) return null;
+
   return (
     <div className='ui segment'>
       <div className='city-name'>{forecast.city_name}</div>
