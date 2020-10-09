@@ -5,10 +5,11 @@ import SearchField from "../SearchBar";
 const SecondPage = () => {
   const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=";
   const sydney = `${baseUrl}Sydney`;
+  const newYork = `${baseUrl}New York`;
   const mumbai = `${baseUrl}Mumbai`;
   const london = `${baseUrl}London`;
   const tokyo = `${baseUrl}Tokyo`;
-  const cities = [sydney, mumbai, london, tokyo];
+  const cities = [sydney, newYork, mumbai, london, tokyo];
   const [filter, setFilter] = useState({ minTemp: 0, maxTemp: 0 });
 
   const onFilterSubmit = (minTemp: number, maxTemp: number) => {
