@@ -1,29 +1,26 @@
 import React, { useState } from "react";
 
-interface Props {
-  onTermSubmit: (minTemp: string, maxTemp: string) => void;
-}
-
-const SearchBar: React.FC<Props> = ({ onTermSubmit }) => {
+const SearchBar = ({ onFilterSubmit }) => {
   const [minTemp, setMinTemp] = useState("");
   const [maxTemp, setMaxTemp] = useState("");
 
   const onInputChange = (e) => {
     const { value, name } = e.target;
-    name === "minTemp" ? setMinTemp(value) : setMaxTemp(value);
+    name === "minTemp" ? setMinTemp(Number(value)) : setMaxTemp(Number(value));
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    onTermSubmit(minTemp, maxTemp);
+    onFilterSubmit(minTemp, maxTemp);
   };
 
   return (
     <div className='search-bar ui segment'>
       <form onSubmit={(e) => onFormSubmit(e)} className='ui form'>
         <div className='field'>
-          <label>Search Min Temperature</label>
+          <label>Search</label>
           <input
+            placeholder='Min Temperature'
             className='ui input'
             type='text'
             name='minTemp'
@@ -32,8 +29,8 @@ const SearchBar: React.FC<Props> = ({ onTermSubmit }) => {
           />
         </div>
         <div className='field'>
-          <label>Search Max Tempearature</label>
           <input
+            placeholder='Max Temperature'
             type='text'
             name='maxTemp'
             value={maxTemp}

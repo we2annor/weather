@@ -1,6 +1,6 @@
-import React from "react";
-import Page from "../components/page";
-import SearchBar from "../components/searchBar";
+import React, { useState } from "react";
+import City from "../City";
+import SearchField from "../SearchBar";
 
 const SecondPage = () => {
   const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=";
@@ -9,20 +9,21 @@ const SecondPage = () => {
   const london = `${baseUrl}London`;
   const tokyo = `${baseUrl}Tokyo`;
   const cities = [sydney, mumbai, london, tokyo];
+  const [filter, setFilter] = useState({ minTemp: 0, maxTemp: 0 });
 
-  const onTermSubmit = (minTemp: number, maxTemp: number) => {
-    //cities.map((city)=>));
+  const onFilterSubmit = (minTemp: number, maxTemp: number) => {
+    setFilter({ minTemp, maxTemp });
   };
 
   const renderPageContent = () => {
     return cities.map((city, i) => (
-      <Page key={i} api={city} city_name={city.split("=")[1]} />
+      <City key={i} api={city} city_name={city.split("=")[1]} filter={filter} />
     ));
   };
 
   return (
     <div>
-      <SearchBar onTermSubmit={onTermSubmit} />
+      <SearchField onFilterSubmit={onFilterSubmit} />
       {renderPageContent()}
     </div>
   );

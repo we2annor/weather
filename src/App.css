@@ -1,26 +1,25 @@
-.App {
-  text-align: center;
-  font-size: calc(10px + 2vmin);
+.forecast small {
+  padding-bottom: 20px;
   display: inline-block;
-  width: 33%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.forecast .date {
+  margin-right: 4px;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+.loading .error-message {
+  font-size: small;
+  text-align: center;
 }
 
 .navigation nav {
   display: inline-block;
   position: absolute;
   top: 0;
-
 }
 
 .search_form {
@@ -30,7 +29,7 @@
 }
 
 .search_form div {
-  display: inline-block
+  display: inline-block;
 }
 
 .search_form label {
@@ -70,69 +69,58 @@ h3 {
 p {
   display: inline-block;
   margin-right: 1.5em;
-  color: #61dafb;
 }
 
-.temperature {
-  font-size: 3.5em;
-  font-weight: 500;
-  margin: 0;
+.city-name {
+  padding-bottom: 30px;
+  font-size: 1.6em;
 }
-
-.description {
-  display: block;
-  margin: 0;
-}
-
-
-
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
-.ajax-section {
-  margin: 50px 0 20px;
+.div-section {
+  margin: 40px 0 15px;
 }
 
-.ajax-section .days {
+.div-section .cities {
   display: grid;
-  grid-gap: 32px 20px;
+  grid-gap: 20px 15px;
   grid-template-columns: repeat(4, 1fr);
 }
 
 @media screen and (max-width: 1000px) {
-  .ajax-section .days {
+  .div-section .cities {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 700px) {
-  .ajax-section .days {
+  .div-section .cities {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 500px) {
-  .ajax-section .days {
+  .div-section .cities {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-.ajax-section .day {
+.div-section .city {
   border: 1px solid rgb(213, 214, 213);
   list-style: none;
   position: relative;
-  padding: 40px 10%;
-  border-radius: 20px;
+  padding: 20px 10%;
+  border-radius: 14px;
   background: var(--text_light);
   color: var(--text_med);
 }
 
-.ajax-section .day::after {
+.div-section .city::after {
   content: ’’;
   width: 90%;
   height: 50px;
@@ -145,52 +133,35 @@ p {
   background: var(--text_light);
 }
 
-.ajax-section figcaption {
+.div-section figcaption {
   margin-top: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.ajax-section .day-temp {
+.div-section .city-temp {
   font-size: 5rem;
   font-weight: bold;
   margin-top: 10px;
   color: var(--text_dark);
 }
 
-.ajax-section .day sup {
+.div-section .city sup {
   font-size: 0.5em;
 }
-
-.ajax-section .day-name sup {
-  padding: 0.2em 0.6em;
-  border-radius: 30px;
-  color: var(--text_light);
-  background: var(--orange);
-}
-
-.ajax-section .day-icon {
-  margin-top: 10px;
-  width: 100px;
-  height: 100px;
-}
-
-
 
 @media screen and (max-width: 1000px) {
   body {
     padding: 30px;
   }
 
-  .section .days {
+  .section .cities {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 700px) {
-
-  .heading,
-  .section .day-temp {
+  .section .city-temp {
     font-size: 3rem;
   }
 

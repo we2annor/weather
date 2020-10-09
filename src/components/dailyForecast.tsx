@@ -1,27 +1,17 @@
 import React from "react";
 
-interface DailyForecast {
-  weather: Weather;
-  high_temp: number;
-  low_temp: number;
-  datetime: Date;
-  temp: number;
-}
-
-interface Weather {
-  description: string;
-  icon: string;
-}
-interface Props {
-  dailyForecast: DailyForecast;
-}
-
-const DailyForecast: React.FC<Props> = ({ dailyForecast }) => {
+const DailyForecast = ({ dailyForecast }) => {
   return (
     <div className='forecast'>
+      <small>
+        <span className='date'>Date:</span>
+        {dailyForecast.datetime}
+      </small>
       <div>
-        {Math.round(dailyForecast.temp)}
-        <sup>°C</sup>
+        <div className='city-temp'>
+          {Math.round(dailyForecast.temp)}
+          <sup>°C</sup>
+        </div>
         <figure>
           <img
             alt={dailyForecast.weather.description}
@@ -32,7 +22,6 @@ const DailyForecast: React.FC<Props> = ({ dailyForecast }) => {
       </div>
       <p>H:{dailyForecast.high_temp}</p>
       <p>H:{dailyForecast.low_temp}</p>
-      Date: {dailyForecast.datetime} {dailyForecast.weather.description}
     </div>
   );
 };

@@ -1,28 +1,30 @@
 import React from "react";
-import DailyForecast from "./dailyForecast";
+import DailyForecast from "./DailyForecast";
 
-interface Props {
-  dailyForecasts: DailyForecasts;
-}
-
-interface DailyForecasts {
-  map: Function;
-  dailyForecast: [];
-  index: number;
-}
-
-const DailyForecastList: React.FC<Props> = ({ dailyForecasts }) => {
-  const renderedList = dailyForecasts.map(
-    (dailyForecast: any, index: number) => {
+const DailyForecastList = ({ dailyForecasts, filter }) => {
+  const filteredDailyForecasts = dailyForecasts.filter((dailyForecast) => {
+    if (filter.minTemp && filter.maxTemp) {
       return (
-        <li key={index} className='day'>
-          <DailyForecast dailyForecast={dailyForecast} />
-        </li>
+        dailyForecast.temp >= filter.minTemp &&
+        dailyForecast.temp <= filter.maxTemp
       );
+    } else if (filter.minTemp) {
+      return dailyForecast.temp >= filter.minTemp;
+    } else if (filter.maxTemp) {
+      return dailyForecast.temp <= filter.maxTemp;
     }
-  );
 
-  return <div>{renderedList}</div>;
+    return true;
+  });
+  const renderedList = filteredDailyForecasts.map((dailyForecast, index) => {
+    return (
+      <li key={index} className='city'>
+        <DailyForecast dailyForecast={dailyForecast} />
+      </li>
+    );
+  });
+
+  return <>{renderedList}</>;
 };
 
 export default DailyForecastList;
