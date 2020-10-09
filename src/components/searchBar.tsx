@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { SearchBarProps } from "../types/index";
 
-interface Temp {
-  minTemp: string;
-  maxTemp: string;
-}
 const SearchBar: React.FC<SearchBarProps> = ({ onFilterSubmit }) => {
   const [minTemp, setMinTemp] = useState(0);
   const [maxTemp, setMaxTemp] = useState(0);
