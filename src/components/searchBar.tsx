@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { SearchBarProps } from "../types/index";
 
-interface Props {
-  onFilterSubmit: {
-    (minTemp: number, maxTemp: number): void;
-  };
+interface Temp {
+  minTemp: string;
+  maxTemp: string;
 }
-const SearchBar: React.FC<Props> = ({ onFilterSubmit }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onFilterSubmit }) => {
   const [minTemp, setMinTemp] = useState(0);
   const [maxTemp, setMaxTemp] = useState(0);
 
@@ -29,7 +29,7 @@ const SearchBar: React.FC<Props> = ({ onFilterSubmit }) => {
             className='ui input'
             type='text'
             name='minTemp'
-            value={minTemp}
+            value={minTemp === 0 ? "" : minTemp}
             onChange={onInputChange}
           />
         </div>
@@ -38,7 +38,7 @@ const SearchBar: React.FC<Props> = ({ onFilterSubmit }) => {
             placeholder='Max Temperature'
             type='text'
             name='maxTemp'
-            value={maxTemp}
+            value={maxTemp === 0 ? "" : maxTemp}
             onChange={onInputChange}
           />
         </div>

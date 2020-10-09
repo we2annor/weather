@@ -5,7 +5,7 @@ import SecondPage from "./components/pages/SecondPage";
 import Navigation from "./components/navigation/Navigation";
 import "./App.css";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Router>
       <div className='ui container'>

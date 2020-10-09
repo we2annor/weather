@@ -1,22 +1,11 @@
 import React from "react";
 import DailyForecast from "./DailyForecast";
+import { DailyForecastListProps } from "../types/index";
 
-interface ResultItem {
-  datetime: string;
-  temp: number;
-  weather: { description: string; icon: string };
-  high_temp: number;
-  low_temp: number;
-}
-
-interface ResultItems extends Array<ResultItem> {}
-
-interface Props {
-  results: ResultItems;
-  filter: any;
-}
-
-const DailyForecastList: React.FC<Props> = ({ results, filter }) => {
+const DailyForecastList: React.FC<DailyForecastListProps> = ({
+  results,
+  filter,
+}) => {
   const filteredDailyForecasts = results.filter((result) => {
     if (filter.minTemp && filter.maxTemp) {
       return result.temp >= filter.minTemp && result.temp <= filter.maxTemp;

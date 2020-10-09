@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { KEY } from "../apis/weatherio";
 import axios from "axios";
+import { KEY } from "../apis/weatherio";
 import DailyForecastList from "./DailyForecastList";
+import { CityProps, ResultItems } from "../types/index";
 
-interface Props {
-  api: string;
-  city_name: string;
-  filter: {};
-}
-
-interface ResultItem {
-  datetime: string;
-  temp: number;
-  weather: { description: string; icon: string };
-  high_temp: number;
-  low_temp: number;
-}
-
-interface ResultItems extends Array<ResultItem> {}
-
-const City: React.FC<Props> = ({ api, city_name, filter }) => {
+const City: React.FC<CityProps> = ({ api, city_name, filter }) => {
   const [results, setResults] = useState<ResultItems>([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);

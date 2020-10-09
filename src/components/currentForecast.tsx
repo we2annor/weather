@@ -1,16 +1,10 @@
 import React from "react";
+import { CurrentForecastProps } from "../types/index";
 
-interface Props {
-  forecast: {
-    city_name: string;
-    temp: number;
-    sunrise: number;
-    sunset: number;
-  };
-  weatherDetails: { description: string; icon: string };
-}
-
-const CurrentForecast: React.FC<Props> = ({ forecast, weatherDetails }) => {
+const CurrentForecast: React.FC<CurrentForecastProps> = ({
+  forecast,
+  weatherDetails,
+}) => {
   return (
     <div className='ui segment'>
       <div className='div-section'>
