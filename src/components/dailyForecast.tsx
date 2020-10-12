@@ -26,5 +26,4 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ dailyForecast }) => {
     </div>
   );
 };
-
 export default DailyForecast;

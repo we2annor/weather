@@ -43,4 +43,5 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterSubmit }) => {
     </div>
   );
 };
+
 export default SearchBar;

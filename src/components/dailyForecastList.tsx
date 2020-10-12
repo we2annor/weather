@@ -17,6 +17,7 @@ const DailyForecastList: React.FC<DailyForecastListProps> = ({
 
     return true;
   });
+
   const renderedList = filteredDailyForecasts.map((results, index) => {
     return (
       <li key={index} className='city'>
@@ -27,5 +28,4 @@ const DailyForecastList: React.FC<DailyForecastListProps> = ({
 
   return <>{renderedList}</>;
 };
-
 export default DailyForecastList;
