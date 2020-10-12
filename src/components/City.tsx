@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { KEY } from "../apis/weatherio";
-import DailyForecastList from "./DailyForecastList";
+import DailyForecastList from "./DailyForecastList1";
 import { CityProps, ResultItems } from "../types/index";
 
 const City: React.FC<CityProps> = ({ api, city_name, filter }) => {
