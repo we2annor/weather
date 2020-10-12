@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+You will have to run npm install to load all the dependency files before you run yarn/npm start.
+
 ## Available Scripts
 
 In the project directory, you can run:
