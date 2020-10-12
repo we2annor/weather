@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import City from "../City";
-import SearchField from "../SearchBar1";
+import SearchField from "../SearchBar";
 
 const SecondPage = () => {
   const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=";
